@@ -1,11 +1,11 @@
 {
-  "main.js": "/znematoadz/todoApp/static/js/main.36c20579.chunk.js",
-  "main.js.map": "/znematoadz/todoApp/static/js/main.36c20579.chunk.js.map",
-  "static/js/1.1029a115.chunk.js": "/znematoadz/todoApp/static/js/1.1029a115.chunk.js",
-  "static/js/1.1029a115.chunk.js.map": "/znematoadz/todoApp/static/js/1.1029a115.chunk.js.map",
-  "runtime~main.js": "/znematoadz/todoApp/static/js/runtime~main.49bc3fe4.js",
-  "runtime~main.js.map": "/znematoadz/todoApp/static/js/runtime~main.49bc3fe4.js.map",
-  "index.html": "/znematoadz/todoApp/index.html",
-  "precache-manifest.5967f64f04b73c82b70f262a2097dfcf.js": "/znematoadz/todoApp/precache-manifest.5967f64f04b73c82b70f262a2097dfcf.js",
-  "service-worker.js": "/znematoadz/todoApp/service-worker.js"
+  "main.js": "/todoApp/static/js/main.36c20579.chunk.js",
+  "main.js.map": "/todoApp/static/js/main.36c20579.chunk.js.map",
+  "static/js/1.1029a115.chunk.js": "/todoApp/static/js/1.1029a115.chunk.js",
+  "static/js/1.1029a115.chunk.js.map": "/todoApp/static/js/1.1029a115.chunk.js.map",
+  "runtime~main.js": "/todoApp/static/js/runtime~main.92bbb379.js",
+  "runtime~main.js.map": "/todoApp/static/js/runtime~main.92bbb379.js.map",
+  "index.html": "/todoApp/index.html",
+  "precache-manifest.f13a626546201e491292d9e7b39434ad.js": "/todoApp/precache-manifest.f13a626546201e491292d9e7b39434ad.js",
+  "service-worker.js": "/todoApp/service-worker.js"
 }
