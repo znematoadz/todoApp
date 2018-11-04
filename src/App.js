@@ -36,7 +36,7 @@ const TodoForm = ({addTodo}) => {
 const Todo = ({todo, remove}) => {
   // each todo
   
-  return (<li id={todo.id} className="list-group-item" >
+  return (<li className="list-group-item" >
       {todo.text} 
       <span className='fa fa-times removeBtn text-info' onClick={() => {(remove(todo.id))}}></span>
     </li>);
@@ -63,16 +63,68 @@ const Title = ({todoCount}) => {
 
 
 window.id = 0;
+
+// App
 class App extends React.Component {
   constructor(props){
     super(props);
     this.state = { 
-      txt: 0,
+      txt: '',
       data: []
     }
     
   }
   
+  componentDidMount() {
+    this.hydrateStateWithLocalStorage();
+
+    // add event listener to save state to localStorage
+    // when user leaves/refreshes the page
+    window.addEventListener(
+      "beforeunload",
+      this.saveStateToLocalStorage.bind(this)
+    );
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener(
+      "beforeunload",
+      this.saveStateToLocalStorage.bind(this)
+    );
+
+    // saves if component has a chance to unmount
+    this.saveStateToLocalStorage();
+  }
+
+  hydrateStateWithLocalStorage() {
+    // for all items in state
+    for (let key in this.state) {
+      // if the key exists in localStorage
+      if (localStorage.hasOwnProperty(key)) {
+        // get the key's value from localStorage
+        let value = localStorage.getItem(key);
+
+        // parse the localStorage string and setState
+        try {
+          value = JSON.parse(value);
+          this.setState({ [key]: value });
+        } catch (e) {
+          // handle empty string
+          this.setState({ [key]: value });
+        }
+      }
+    }
+  }
+
+  saveStateToLocalStorage() {
+    // for every item in React state
+    for (let key in this.state) {
+      // save to localStorage
+      localStorage.setItem(key, JSON.stringify(this.state[key]));
+    }
+  }
+
+
   // todo handler
   addTodo(val) {
     if(val !== '') {
@@ -88,7 +140,7 @@ class App extends React.Component {
     }
   }
   
-  // handle remove
+  // handle remove f
   handleRemove(id){
     // filter all todos except the one to be removed
     // eslint-disable-next-line
@@ -101,6 +153,8 @@ class App extends React.Component {
     });
   }
   
+  
+
   render() {
     
     return (
