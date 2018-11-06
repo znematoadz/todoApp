@@ -33,20 +33,20 @@ const TodoForm = ({addTodo}) => {
   );
 };
 
-const Todo = ({todo, remove}) => {
+const Todo = ({todo, remove, toggleClass}) => {
   // each todo
-  
-  return (<li className="list-group-item" >
+  //
+  return (<li className="list-group-item" id={todo.id} onClick={() => {(toggleClass(todo.id))}}>
       {todo.text} 
       <span className='fa fa-times removeBtn text-info' onClick={() => {(remove(todo.id))}}></span>
     </li>);
     
 }
 
-const TodoList = ({todos, remove}) => {
+const TodoList = ({todos, remove, toggleClass}) => {
   //map through the todos
   const todoNode = todos.map((todo) => {
-    return (<Todo todo={todo} key={todo.id} remove={remove}/>)
+    return (<Todo todo={todo} key={todo.id} remove={remove} toggleClass={toggleClass}/>)
   });
   return (<ul className="list-group">{todoNode}</ul>)
 }
@@ -70,7 +70,8 @@ class App extends React.Component {
     super(props);
     this.state = { 
       txt: '',
-      data: []
+      data: [],
+     
     }
     
   }
@@ -140,7 +141,7 @@ class App extends React.Component {
     }
   }
   
-  // handle remove f
+  // handle remove 
   handleRemove(id){
     // filter all todos except the one to be removed
     // eslint-disable-next-line
@@ -153,8 +154,14 @@ class App extends React.Component {
     });
   }
   
+  handleToggleClass(id){
+    
+    const addClass = document.getElementById(`${id}`);
+    
+    if (addClass !== undefined) return addClass.classList.contains('checked') ? addClass.classList.remove('checked') : addClass.classList.add('checked');
+    
+  }   
   
-
   render() {
     
     return (
@@ -164,8 +171,8 @@ class App extends React.Component {
             <TodoList
               todos={this.state.data}
               remove={this.handleRemove.bind(this)}
-              />
-              
+              toggleClass={this.handleToggleClass.bind(this)}
+              />          
         </div>
   )}
 }
