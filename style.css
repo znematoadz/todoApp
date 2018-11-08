@@ -12,7 +12,7 @@ div {
 
 .removeBtn {
     position: absolute;
-	right: 8px;
+	right: 0;
 	top: 50%;
     transform: translateY(-50%);
     font-size: 10em;
@@ -61,4 +61,12 @@ ul li.checked::before {
     transform: rotate(45deg);
     height: 15px;
     width: 7px;
+}
+
+.github-icon {
+    font-size: 2rem;
+}
+
+.fixed-bottom p {
+    font-size: 1em
 }
