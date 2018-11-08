@@ -36,9 +36,9 @@ const TodoForm = ({addTodo}) => {
 const Todo = ({todo, remove, toggleClass}) => {
   // each todo
   //
-  return (<li className="list-group-item" id={todo.id} onClick={() => {(toggleClass(todo.id))}}>
+  return (<li className={todo.addClass} id={todo.id} onClick={() => {(toggleClass(todo.id))}}>
       {todo.text} 
-      <span className='fa fa-times removeBtn text-info' onClick={() => {(remove(todo.id))}}></span>
+      <button className='fa fa-times removeBtn text-danger h-100 p-3 btn close' onClick={() => {(remove(todo.id))}}></button>
     </li>);
     
 }
@@ -70,8 +70,9 @@ class App extends React.Component {
     super(props);
     this.state = { 
       txt: '',
+      classNames: 'list-group-item',
       data: [],
-     
+       
     }
     
   }
@@ -130,7 +131,7 @@ class App extends React.Component {
   addTodo(val) {
     if(val !== '') {
       // assemble data
-      const todo = {text: val, id: window.id++}
+      const todo = {text: val, addClass: 'list-group-item', id: window.id = Date.now()}
       // update data
       this.state.data.push(todo);
       // update state
@@ -155,10 +156,16 @@ class App extends React.Component {
   }
   
   handleToggleClass(id){
-    
+    // get list item by id 
     const addClass = document.getElementById(`${id}`);
-    
-    if (addClass !== undefined) return addClass.classList.contains('checked') ? addClass.classList.remove('checked') : addClass.classList.add('checked');
+    // add class name to list item dynamically adding the check mark and and crossing out the text.   
+    if (addClass !== undefined) addClass.classList.contains('checked') ? addClass.classList.remove('checked') : addClass.classList.add('checked');
+      
+      // filtering through and adding class to filtered items state this saves className for reload. 
+      // eslint-disable-next-line
+      const check = this.state.data.filter((todo) => {
+        if(todo.id === id) return todo.addClass === "list-group-item checked" ? todo.addClass = "list-group-item" : todo.addClass = "list-group-item checked"
+      })
     
   }   
   
