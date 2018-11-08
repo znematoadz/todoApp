@@ -61,8 +61,18 @@ const Title = ({todoCount}) => {
   );
 }
 
+const Footer = () => {
+  return (
+    <div className="fixed-bottom bg-white">
+      <p className="text-secondary  m-0  lead">Created by Gerald Jones</p>
+        <a className=" github-icon mb-5" href="https://github.com/znematoadz/todoApp">
+          <i className=" fa fa-github text-secondary mb-3"></i>
+        </a>
+    </div>
+  );
+}
 
-window.id = 0;
+
 
 // App
 class App extends React.Component {
@@ -163,7 +173,7 @@ class App extends React.Component {
       
       // filtering through and adding class to filtered items state this saves className for reload. 
       // eslint-disable-next-line
-      const check = this.state.data.filter((todo) => {
+      this.state.data.filter((todo) => {
         if(todo.id === id) return todo.addClass === "list-group-item checked" ? todo.addClass = "list-group-item" : todo.addClass = "list-group-item checked"
       })
     
@@ -172,6 +182,7 @@ class App extends React.Component {
   render() {
     
     return (
+        
         <div> 
             <Title todoCount={this.state.data.length}/>
             <TodoForm addTodo={this.addTodo.bind(this)}/>
@@ -179,7 +190,11 @@ class App extends React.Component {
               todos={this.state.data}
               remove={this.handleRemove.bind(this)}
               toggleClass={this.handleToggleClass.bind(this)}
-              />          
+              />
+              <div className="col-sm-8 h-100"><p className="invisible">list bottom</p></div>          
+          <div>
+            <Footer/>
+          </div>
         </div>
   )}
 }

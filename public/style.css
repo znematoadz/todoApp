@@ -62,3 +62,11 @@ ul li.checked::before {
     height: 15px;
     width: 7px;
 }
+
+.github-icon {
+    font-size: 2rem;
+}
+
+.fixed-bottom p {
+    font-size: 1em
+}
